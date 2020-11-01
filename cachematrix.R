@@ -1,5 +1,12 @@
-# Creates a special matrix object that can cache its inverse
-# Argument parameter: Matrix, Output: List
+## Pair of functions that cache the inverse of a matrix
+## Usage: Pass the result of a makeCacheMatrix call to cacheSolve 
+
+#' Util function that set the matrix and the inverse in an environment
+#' @param x an invertible matrix
+#' examples
+#' x = makeCacheMatrix(matrix(rnorm(9), 3, 3))
+#' x$set(matrix(rnorm(16), 4, 4))
+
 makeCacheMatrix <- function(x = matrix()){
   # Initialize the inverse value
   m <- NULL
@@ -26,8 +33,13 @@ makeCacheMatrix <- function(x = matrix()){
 }
 
 
-# To compute the inverse of the special matrix
-# Argument parameter: Matrix, Output: Inverse Matrix
+#' Compute and cache the inverse of a matrix
+#' @param x the result of a previous makeCacheMatrix call
+#' @param ... additional arguments to pass to solve function
+#' examples
+#' x = makeCacheMatrix(matrix(rnorm(9), 3, 3))
+#' cacheSolve(x)
+
 cacheSolve <- function(x, ...){
   # Initialize a matrix that is the inverse of x matrix
   m <- x$getinverse()
@@ -50,3 +62,7 @@ cacheSolve <- function(x, ...){
   # Return the matrix
   m
 }
+
+
+
+
